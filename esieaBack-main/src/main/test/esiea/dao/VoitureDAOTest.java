@@ -24,21 +24,6 @@ class VoitureDAOTest {
     ResultSet res;
 
 
-    private Connection getConnexion() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            if (connection == null) {
-                connection = DriverManager.getConnection(url, user, pwd);
-            }
-        } catch (SQLException sql) {sql.printStackTrace(); }
-        catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return connection;
-    }
-
-
 
     @BeforeEach
     void setUp() {
@@ -67,11 +52,13 @@ class VoitureDAOTest {
         new VoitureDAO().ajouterVoiture(honda);
         new VoitureDAO().ajouterVoiture(kangoo);
 
-        assertEquals(nbVoiture + 1, new VoitureDAO().getVoitures(null).length );
+        assertEquals(nbVoiture + 2, new VoitureDAO().getVoitures(null).length );
         Voiture databaseVoiture = new VoitureDAO().getVoiture("HondaTest")[0];
         honda.setId(databaseVoiture.getId());
         assertEquals(honda.toString(), databaseVoiture.toString());
 
+        new VoitureDAO().supprimerVoiture(String.valueOf(databaseVoiture.getId()));
+        databaseVoiture = new VoitureDAO().getVoiture("RenaultTest")[0];
         new VoitureDAO().supprimerVoiture(String.valueOf(databaseVoiture.getId()));
 
     }
@@ -96,6 +83,7 @@ class VoitureDAOTest {
         databasaVoiture = new VoitureDAO().getVoiture("RenaultTest")[0];
         newVoiture.setId(databasaVoiture.getId());
         assertEquals(newVoiture.toString(), databasaVoiture.toString());
+        new VoitureDAO().supprimerVoiture(String.valueOf(databasaVoiture.getId()));
 
     }
 
@@ -109,7 +97,10 @@ class VoitureDAOTest {
         assertEquals(honda.toString(), databaseVoiture.toString());
         databaseVoiture  = new VoitureDAO().getVoiture(String.valueOf(id))[0];
         assertEquals(honda.toString(), databaseVoiture.toString());
+
         new VoitureDAO().supprimerVoiture(String.valueOf(id));
+        databaseVoiture = new VoitureDAO().getVoiture("RenaultTest")[0];
+        new VoitureDAO().supprimerVoiture(String.valueOf(databaseVoiture.getId()));
     }
 
     @Test
