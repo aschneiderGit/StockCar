@@ -48,10 +48,10 @@ class VoitureTest {
 
     @Test
     void testToString() {
-        assertEquals(v1.toString(), """
-                {"id":0,"marque":"Honda","modele":"Civic","finition":"R","carburant":"ESSENCE","km":40000,"annee":2020,"prix":40000} """);
+        assertEquals(v1.toString(), "{\"id\":0,\"marque\":\"Honda\",\"modele\":\"Civic\",\"finition\":\"R\",\"carburant\":\"ESSENCE\",\"km\":40000,\"annee\":2020,\"prix\":40000}");
     }
-    @Test
+
+        @Test
     void checkID() {
         assertTrue(v1.check());
         v1.setId(-1);
