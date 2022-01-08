@@ -1,7 +1,9 @@
-package utils;
+package esiea.utils;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import utils.StringUtils;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +15,7 @@ class StringUtilsTest {
 
     @Test
     void estEntier() {
-        assertFalse(StringUtils.estEntier(null));
+        Assertions.assertFalse(StringUtils.estEntier(null));
         assertFalse(StringUtils.estEntier("test"));
         assertTrue(StringUtils.estEntier("-4"));
         assertFalse(StringUtils.estEntier("3.2"));
