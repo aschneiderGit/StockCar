@@ -33,5 +33,6 @@ jobs:
           cd esieaBack-main 
           mvn clean install
     - name : Package  
-      run:   
-          mvn -B package --file pom.xml
+      run: |
+           cd esieaBack-main    
+           mvn -B package --file pom.xml
