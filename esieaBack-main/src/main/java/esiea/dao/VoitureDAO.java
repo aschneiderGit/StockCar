@@ -64,18 +64,18 @@ public class VoitureDAO {
 				+ "carburant = ?, "
 				+ "km = ?, "
 				+ "annee = ?, "
-				+ "prix = ?), "
+				+ "prix = ? "
 				+ "WHERE id = ?";
 		PreparedStatement stmt = getConnexion().prepareStatement(requete);
 		stmt.setString(1, nouvelle.getMarque());
 		stmt.setString(2, nouvelle.getModele());
 		stmt.setString(3, nouvelle.getFinition());
-		//stmt.set(4, nouvelle.getCarburant().getChar());
+		stmt.setString(4, String.valueOf(nouvelle.getCarburant().getChar()));
 		stmt.setInt(5, nouvelle.getKm());
 		stmt.setInt(6, nouvelle.getAnnee());
 		stmt.setInt(7, nouvelle.getPrix());
 		stmt.setInt(8, id);
-		stmt.executeQuery();
+		stmt.executeUpdate();
 		deconnecter();
 	}
 	
@@ -106,10 +106,10 @@ public class VoitureDAO {
 				nbCol = StringUtils.nbOccurrence(requete, '?')/masque.split(" ").length;
 			} else {
 				for(String colonne : criteres.keySet()) {
-					requete += colonne + " = ?,";
+					requete += colonne + " = ? and ";
 				}
 				//retrait de la dernière virgule
-				requete = requete.substring(0, requete.length()-1);
+				requete = requete.substring(0, requete.length()-4);
 			}
 		}
 		

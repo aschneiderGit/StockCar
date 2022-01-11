@@ -35,6 +35,7 @@ class VoitureTest {
         v1.setKm(V1_KM);
 
     }
+
     @Test
     void GetterTest() {
         assertEquals(V1_ID, v1.getId());
