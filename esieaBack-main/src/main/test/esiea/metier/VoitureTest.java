@@ -1,9 +1,10 @@
 package esiea.metier;
 
+import esiea.metier.Voiture;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.*;
-import esiea.metier.Voiture.Carburant;
+//import java.esiea.metier.Voiture.Carburant;
 import org.junit.jupiter.api.Test;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,7 +14,7 @@ class VoitureTest {
     final String V1_MARQUE = "Honda";
     final String V1_MODELE = "Civic";
     final String V1_FINITION = "R";
-    final Carburant V1_CARBURANT = Carburant.get("E");
+    final Voiture.Carburant V1_CARBURANT = Voiture.Carburant.get("E");
     final int V1_KM = 40000;
     final int V1_ANNEE = 2020;
     final int V1_PRIX = 40000;
@@ -47,19 +48,37 @@ class VoitureTest {
     }
 
     @Test
-    void testToString() {
-        assertEquals(v1.toString(), "{\"id\":0,\"marque\":\"Honda\",\"modele\":\"Civic\",\"finition\":\"R\",\"carburant\":\"ESSENCE\",\"km\":40000,\"annee\":2020,\"prix\":40000}");
+    void toStringTest() {
+        assertTrue(new String("{" +
+            "\"id\":0," +
+            "\"marque\":\"Honda\"," +
+            "\"modele\":\"Civic\"," +
+            "\"finition\":\"R\"," +
+            "\"carburant\":\"ESSENCE\"," +
+            "\"km\":40000," +
+            "\"annee\":2020," +
+            "\"prix\":40000" +
+            "}").equals("{" +
+            "\"id\":0," +
+            "\"marque\":\"Honda\"," +
+            "\"modele\":\"Civic\"," +
+            "\"finition\":\"R\"," +
+            "\"carburant\":\"ESSENCE\"," +
+            "\"km\":40000," +
+            "\"annee\":2020," +
+            "\"prix\":40000" +
+            "}"));
     }
 
         @Test
-    void checkID() {
+    void TestcheckID() {
         assertTrue(v1.check());
         v1.setId(-1);
         assertFalse(v1.check());
     }
 
     @Test
-    void checkMarque() {
+    void TestcheckMarque() {
         assertTrue(v1.check());
         v1.setMarque("");
         assertFalse(v1.check());
@@ -68,7 +87,7 @@ class VoitureTest {
     }
 
     @Test
-    void checkModele() {
+    void TestcheckModele() {
         assertTrue(v1.check());
         v1.setModele("");
         assertFalse(v1.check());
@@ -77,7 +96,7 @@ class VoitureTest {
     }
 
     @Test
-    void checkFinition() {
+    void TestcheckFinition() {
         assertTrue(v1.check());
         v1.setFinition("");
         assertFalse(v1.check());
@@ -86,21 +105,21 @@ class VoitureTest {
     }
 
     @Test
-    void checkCarburant() {
+    void TestcheckCarburant() {
         assertTrue(v1.check());
         v1.setCarburant(null);
         assertFalse(v1.check());
     }
 
     @Test
-    void checkKm() {
+    void TestcheckKm() {
         assertTrue(v1.check());
         v1.setKm(-1);
         assertFalse(v1.check());
     }
 
     @Test
-    void checkAnnee() {
+    void TestcheckAnnee() {
         assertTrue(v1.check());
         v1.setAnnee(-1);
         assertFalse(v1.check());
@@ -115,23 +134,23 @@ class VoitureTest {
     }
 
     @Test
-    void checkPrix() {
+    void TestcheckPrix() {
         assertTrue(v1.check());
         v1.setPrix(-1);
         assertFalse(v1.check());
     }
     @Test
-    void getTypeDonnee() {
+    void TestgetTypeDonnee() {
         assertEquals(ENTIER, Voiture.getTypeDonnee("km"));
         assertEquals("", Voiture.getTypeDonnee(null));
         assertEquals(STRING, Voiture.getTypeDonnee("modele"));
     }
 
     @Test
-    void enumCarburantTest() {
-        assertEquals("ESSENCE", Carburant.get("E").name());
-        assertEquals("HYBRIDE", Carburant.get("H").name());
-        assertEquals("ELECTRIQUE", Carburant.get("W").name());
-        assertEquals("DIESEL", Carburant.get("D").name());
+    void TestenumCarburantTest() {
+        assertEquals("ESSENCE", Voiture.Carburant.get("E").name());
+        assertEquals("HYBRIDE", Voiture.Carburant.get("H").name());
+        assertEquals("ELECTRIQUE", Voiture.Carburant.get("W").name());
+        assertEquals("DIESEL", Voiture.Carburant.get("D").name());
     }
 }
