@@ -35,4 +35,4 @@ jobs:
     - name : Package  
       run: |
            cd esieaBack-main    
-           mvn -B package --file pom.xml
+           mvn package --file pom.xml
