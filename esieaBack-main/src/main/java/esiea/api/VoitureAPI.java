@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import esiea.dao.VoitureDAO;
 import esiea.metier.Voiture;
 import esiea.metier.Voiture.Carburant;
-import utils.StringUtils;
+import esiea.utils.StringUtils;
 
 @Path("/voiture")
 public class VoitureAPI {

@@ -1,16 +1,13 @@
 package esiea.dao;
-
+import org.junit.jupiter.api.Test;
 import esiea.metier.Voiture;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import java.sql.*;
 import java.util.HashMap;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class VoitureDAOTest {
-
+    
     Voiture honda = new Voiture();
     Voiture kangoo = new Voiture();
 
@@ -22,8 +19,6 @@ class VoitureDAOTest {
     String requete ;
     PreparedStatement stmt;
     ResultSet res;
-
-
 
     @BeforeEach
     void setUp() {
@@ -44,6 +39,11 @@ class VoitureDAOTest {
         kangoo.setCarburant(Voiture.Carburant.get("D"));
     }
 
+    @Test
+    void equalsTest() {
+        assertEquals(1, 1);
+    }
+  
     @Test
     void ajouterVoiture() throws SQLException {
 
