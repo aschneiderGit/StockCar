@@ -2,6 +2,7 @@ package esiea.dao;
 
 import esiea.metier.Voiture;
 import org.junit.jupiter.api.AfterAll;
+import esiea.dao.VoitureDAO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
