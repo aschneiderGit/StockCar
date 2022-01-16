@@ -23,7 +23,13 @@ jobs:
         distribution: 'adopt'
         cache: maven
 
-    - name: Build with Maven
+    - name: Build Docker
+      run: docker-compose up -d
+
+    - name: Wait 
+      run: sleep 5
+
+    - name: run maven test
       run: cd esieaBack-main && mvn clean test install
 
     - name : Package  
