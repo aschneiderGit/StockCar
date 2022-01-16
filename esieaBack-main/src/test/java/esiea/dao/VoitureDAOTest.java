@@ -61,16 +61,7 @@ class VoitureDAOTest {
     @Test
     void modifierVoiture() throws SQLException {
 
-        VoitureDAO vD = new VoitureDAO();
-        Voiture honda2 = new Voiture();
-        honda2.setMarque("HondaTest");
-        honda2.setModele("Civic");
-        honda2.setFinition("R");
-        honda2.setCarburant(Voiture.Carburant.get("E"));
-        honda2.setAnnee(2020);
-        honda2.setPrix(40000);
-        honda2.setKm(40000);
-        vD.ajouterVoiture(honda2);
+        new VoitureDAO().ajouterVoiture(honda);
 
         Voiture databasaVoiture = new VoitureDAO().getVoiture("HondaTest")[0];
         Voiture newVoiture = new Voiture();

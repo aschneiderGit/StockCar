@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v2
@@ -23,6 +23,8 @@ jobs:
         distribution: 'adopt'
         cache: maven
 
+    - name: Run docker
+    - run: docker-compose up -d   
     - name: Run the Maven verify phase
       run: cd esieaBack-main && mvn --batch-mode --update-snapshots verify
 
@@ -31,3 +33,5 @@ jobs:
 
     - name : Package  
       run: cd esieaBack-main && mvn package --file pom.xml
+
+
