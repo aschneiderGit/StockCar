@@ -1,6 +1,8 @@
 package esiea.dao;
 
 import esiea.metier.Voiture;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,17 +15,6 @@ class VoitureDAOTest {
 
     Voiture honda = new Voiture();
     Voiture kangoo = new Voiture();
-
-    private Connection connection;
-    private String url = "jdbc:mysql://localhost:3306/stockcar";
-    private String user = "root";
-    private String pwd = "root";
-
-    String requete ;
-    PreparedStatement stmt;
-    ResultSet res;
-
-
 
     @BeforeEach
     void setUp() {
@@ -44,6 +35,14 @@ class VoitureDAOTest {
         kangoo.setCarburant(Voiture.Carburant.get("D"));
     }
 
+    @AfterEach
+    void afterAll() throws SQLException {
+        Voiture[] voitures = new VoitureDAO().getVoitures(null);
+            for (Voiture v : voitures){
+            new VoitureDAO().supprimerVoiture(String.valueOf(v.getId()));
+        }
+    }
+
     @Test
     void ajouterVoiture() throws SQLException {
 
@@ -56,11 +55,6 @@ class VoitureDAOTest {
         Voiture databaseVoiture = new VoitureDAO().getVoiture("HondaTest")[0];
         honda.setId(databaseVoiture.getId());
         assertEquals(honda.toString(), databaseVoiture.toString());
-
-        new VoitureDAO().supprimerVoiture(String.valueOf(databaseVoiture.getId()));
-        databaseVoiture = new VoitureDAO().getVoiture("RenaultTest")[0];
-        new VoitureDAO().supprimerVoiture(String.valueOf(databaseVoiture.getId()));
-
     }
 
     @Test
@@ -83,8 +77,6 @@ class VoitureDAOTest {
         databasaVoiture = new VoitureDAO().getVoiture("RenaultTest")[0];
         newVoiture.setId(databasaVoiture.getId());
         assertEquals(newVoiture.toString(), databasaVoiture.toString());
-        new VoitureDAO().supprimerVoiture(String.valueOf(databasaVoiture.getId()));
-
     }
 
     @Test
@@ -97,10 +89,6 @@ class VoitureDAOTest {
         assertEquals(honda.toString(), databaseVoiture.toString());
         databaseVoiture  = new VoitureDAO().getVoiture(String.valueOf(id))[0];
         assertEquals(honda.toString(), databaseVoiture.toString());
-
-        new VoitureDAO().supprimerVoiture(String.valueOf(id));
-        databaseVoiture = new VoitureDAO().getVoiture("RenaultTest")[0];
-        new VoitureDAO().supprimerVoiture(String.valueOf(databaseVoiture.getId()));
     }
 
     @Test
@@ -135,25 +123,16 @@ class VoitureDAOTest {
         databaseVoitures = new VoitureDAO().getVoitures(hm);
         honda.setId(databaseVoitures[0].getId());
         assertEquals(honda.toString(), databaseVoitures[0].toString());
-
-        new VoitureDAO().supprimerVoiture(String.valueOf(honda.getId()));
-        new VoitureDAO().supprimerVoiture(String.valueOf(kangoo.getId()));
-        databaseVoitures  = new VoitureDAO().getVoiture("RenaultTest");
-        new VoitureDAO().supprimerVoiture(String.valueOf(databaseVoitures[0].getId()));
-
-
     }
 
 
     @Test
     void supprimerVoiture() throws SQLException {
-
         new VoitureDAO().ajouterVoiture(honda);
         int nbVoiture = new VoitureDAO().getVoitures(null).length;
         Voiture databaseVoiture = new VoitureDAO().getVoiture("HondaTest")[0];
         new VoitureDAO().supprimerVoiture(String.valueOf(databaseVoiture.getId()));
         assertEquals(nbVoiture- 1, new VoitureDAO().getVoitures(null).length );
         assertEquals(0, new VoitureDAO().getVoiture("HondaTest").length);
-
     }
 }

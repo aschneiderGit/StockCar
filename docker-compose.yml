@@ -6,9 +6,12 @@ services:
       - "3306:3306"
     restart: always
     environment:
-      MYSQL_DATABASE: stockcar
+      MYSQL_DATABASE: stockcar   
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: brice
       MYSQL_PASSWORD: brice
+    volumes:
+    - ./dump:/docker-entrypoint-initdb.d
   tomcat:
     build: .
     depends_on:
