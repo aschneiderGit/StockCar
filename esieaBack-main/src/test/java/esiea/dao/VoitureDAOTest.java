@@ -62,7 +62,7 @@ class VoitureDAOTest {
 
         //new VoitureDAO().ajouterVoiture(honda);...
 
-        //Voiture databasaVoiture = new VoitureDAO().getVoiture("HondaTest")[0];
+        Voiture databasaVoiture = new VoitureDAO().getVoiture("HondaTest")[0];
         Voiture newVoiture = new Voiture();
         newVoiture.setMarque("RenaultTest");
         newVoiture.setModele("Kangoo");
@@ -72,7 +72,6 @@ class VoitureDAOTest {
         newVoiture.setAnnee(2010);
         newVoiture.setCarburant(Voiture.Carburant.get("D"));
 
-        Voiture databasaVoiture = null;
         new VoitureDAO().modifierVoiture(databasaVoiture.getId(), newVoiture );
 
         databasaVoiture = new VoitureDAO().getVoiture("RenaultTest")[0];
