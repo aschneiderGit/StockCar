@@ -24,7 +24,7 @@ jobs:
         cache: maven
 
     - name: Build Docker
-    - run: docker-compose up -d
+      run: docker-compose up -d
 
     - name: Build with Maven
       run: cd esieaBack-main && mvn clean test install
