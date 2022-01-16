@@ -58,7 +58,7 @@ class VoitureDAOTest {
         assertEquals(honda.toString(), databaseVoiture.toString());
     }
 
-    @Test
+   /* @Test
     void modifierVoiture() throws SQLException {
 
         new VoitureDAO().ajouterVoiture(honda);
@@ -135,5 +135,5 @@ class VoitureDAOTest {
         new VoitureDAO().supprimerVoiture(String.valueOf(databaseVoiture.getId()));
         assertEquals(nbVoiture- 1, new VoitureDAO().getVoitures(null).length );
         assertEquals(0, new VoitureDAO().getVoiture("HondaTest").length);
-    }
+    }*/
 }
