@@ -26,7 +26,7 @@ jobs:
     - name: Build Docker
       run: docker-compose up -d
 
-    - name: Build with Maven
+    - name: run maven test
       run: cd esieaBack-main && mvn clean test install
 
     - name : Package  
