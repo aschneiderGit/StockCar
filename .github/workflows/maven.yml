@@ -26,6 +26,9 @@ jobs:
     - name: Build Docker
       run: docker-compose up -d
 
+    - name: Wait 
+      run: sleep 20
+
     - name: run maven test
       run: cd esieaBack-main && mvn clean test install
 
