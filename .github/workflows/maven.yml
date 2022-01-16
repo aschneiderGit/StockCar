@@ -25,6 +25,7 @@ jobs:
 
     - name: Run docker
     - run: docker-compose up -d   
+    
     - name: Run the Maven verify phase
       run: cd esieaBack-main && mvn --batch-mode --update-snapshots verify
 
