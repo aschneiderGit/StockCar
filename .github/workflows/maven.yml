@@ -23,16 +23,12 @@ jobs:
         distribution: 'adopt'
         cache: maven
 
-    - name: Run docker
-    - run: docker-compose up -d   
-    
-    - name: Run the Maven verify phase
-      run: cd esieaBack-main && mvn --batch-mode --update-snapshots verify
+    - name: Build Docker
+    - run: docker-compose up -d
 
     - name: Build with Maven
-      run: cd esieaBack-main && mvn clean install test install
+      run: cd esieaBack-main && mvn clean test install
 
     - name : Package  
       run: cd esieaBack-main && mvn package --file pom.xml
-
 
